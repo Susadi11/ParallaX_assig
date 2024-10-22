@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig'; // Import Firebase config
-import { useNavigate } from 'react-router-dom'; // Use navigate for redirection
+import { auth } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Use navigate for redirection
+    const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -16,7 +16,6 @@ const SignUp = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Make a request to backend to create Firestore document
             await fetch('/api/create-user', {
                 method: 'POST',
                 headers: {
@@ -29,7 +28,7 @@ const SignUp = () => {
             });
 
             alert('User registered successfully!');
-            navigate('/profile', { state: { user } }); // Redirect to profile with user data
+            navigate('/profile', { state: { user } });
         } catch (err) {
             setError(err.message);
         }
@@ -71,9 +70,9 @@ const SignUp = () => {
 
                             <button
                                 className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
-                                <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn"
+                                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook"
                                      className="h-[18px] w-[18px]" />
-                                Continue with LinkedIn
+                                Continue with Facebook
                             </button>
                         </div>
 

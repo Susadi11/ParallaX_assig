@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig'; // Import Firebase config
-import { useNavigate } from 'react-router-dom'; // Use navigate for redirection
+import { auth } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Use navigate for redirection
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -16,19 +16,17 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Only pass serializable properties
             const userData = {
                 uid: user.uid,
                 email: user.email,
             };
 
             alert('Logged in successfully!');
-            navigate('/profile', { state: userData }); // Pass only serializable data
+            navigate('/profile', { state: userData });
         } catch (err) {
             setError(err.message);
         }
     };
-
 
     return (
         <div id="login-popup" tabIndex="-1"
@@ -62,13 +60,6 @@ const Login = () => {
                         <div className="mt-7 flex flex-col gap-2">
                             <button
                                 className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
-                                <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub"
-                                     className="h-[18px] w-[18px]" />
-                                Continue with GitHub
-                            </button>
-
-                            <button
-                                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"
                                      className="h-[18px] w-[18px]" />
                                 Continue with Google
@@ -76,9 +67,9 @@ const Login = () => {
 
                             <button
                                 className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
-                                <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn"
+                                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook"
                                      className="h-[18px] w-[18px]" />
-                                Continue with LinkedIn
+                                Continue with Facebook
                             </button>
                         </div>
 

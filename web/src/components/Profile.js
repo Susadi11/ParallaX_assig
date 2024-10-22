@@ -1,43 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { auth } from '../firebaseConfig'; // Import Firebase configuration
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'; // Replace useHistory with useNavigate
+import { useNavigate, useLocation } from 'react-router-dom'; // Use useNavigate and useLocation
 
 const Profile = () => {
-    const [user, setUser] = useState(null);
-    const navigate = useNavigate(); // Replace useHistory with useNavigate
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
-                try {
-                    const response = await fetch(`/api/user?uid=${user.uid}`);
-                    const userData = await response.json();
-                    setUser(userData); // Update the state with user data from Firestore
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-            }
-        };
-
-        fetchUserData();
-    }, [user]);
+    const navigate = useNavigate();
+    const location = useLocation(); // Use location to get passed user data
+    const { uid, email } = location.state || {}; // Access uid and email passed from login or signup
 
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            navigate('/login'); // Use navigate instead of history.push
+            navigate('/login'); // Redirect to login after logout
         } catch (error) {
             console.error('Logout error:', error);
         }
     };
 
+    useEffect(() => {
+        if (!uid) {
+            navigate('/login'); // Redirect to login if no user data is present
+        }
+    }, [uid, navigate]);
+
     return (
         <div className="profile-container">
             <h1>Profile Page</h1>
-            {user ? (
+            {uid ? (
                 <div>
-                    <p>Email: {user.email}</p>
+                    <p>UID: {uid}</p>
+                    <p>Email: {email}</p>
                     <button className="bg-red-500 text-white p-2 rounded" onClick={handleLogout}>
                         Logout
                     </button>

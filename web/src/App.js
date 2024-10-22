@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Use Routes and Route for v6
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Use Navigate for redirection
 import './App.css';
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -10,11 +10,11 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    {/* Use element and pass JSX instead of component */}
+                    {/* Make login the default route */}
+                    <Route path="/" element={<Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/" element={<p>Home Page. Please <a href="/login">Login</a> or <a href="/signup">Sign Up</a>.</p>} />
                 </Routes>
             </div>
         </Router>

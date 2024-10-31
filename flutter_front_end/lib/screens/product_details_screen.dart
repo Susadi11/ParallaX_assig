@@ -1,4 +1,3 @@
-// screens/product_details_screen.dart
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/product.dart';
@@ -36,14 +35,13 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Product Image
                 SizedBox(
                   width: double.infinity,
                   height: 300,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.network(
-                      product.images, // Updated from imageUrl to images
+                      product.images,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
@@ -61,7 +59,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.title, // Updated from name to title
+                        product.title, 
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,

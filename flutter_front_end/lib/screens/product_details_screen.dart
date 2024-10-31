@@ -40,15 +40,18 @@ class ProductDetailsScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 300,
-                  child: Image.network(
-                    product.images,  // Updated from imageUrl to images
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.grey[200],
-                        child: const Icon(Icons.error, size: 50),
-                      );
-                    },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.network(
+                      product.images, // Updated from imageUrl to images
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[200],
+                          child: const Icon(Icons.error, size: 50),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 // Product Info
@@ -58,9 +61,10 @@ class ProductDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.title,  // Updated from name to title
+                        product.title, // Updated from name to title
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.bold,
+                              fontSize: 24,
                             ),
                       ),
                       const SizedBox(height: 8),
@@ -71,6 +75,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.w600,
+                                  fontSize: 20,
                                 ),
                           ),
                           const SizedBox(width: 16),
@@ -83,16 +88,40 @@ class ProductDetailsScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      Text(
-                        'Description',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
                             ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        product.description,
-                        style: Theme.of(context).textTheme.bodyLarge,
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(12.0),
+                        margin: const EdgeInsets.only(top: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Description',
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              product.description,
+                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    fontSize: 16,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -1,17 +1,16 @@
-// models/product.dart
 class Product {
   final String id;
-  final String title;  // Changed from name
+  final String title;  
   final String description;
-  final String images;  // Changed from imageUrl
+  final String images; 
   final double price;
   final double rating;
 
   Product({
     required this.id,
-    required this.title,  // Changed from name
+    required this.title,  
     required this.description,
-    required this.images,  // Changed from imageUrl
+    required this.images,  
     required this.price,
     required this.rating,
   });

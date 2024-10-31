@@ -5,6 +5,7 @@ Project Setup
 1. Clone the repository:
 ```bash
 git clone https://github.com/Susadi11/assignment_susadi.git
+```bash
 
 2. Navigate to the flutter frontend folder
 ```bash

@@ -1,4 +1,3 @@
-// screens/home_screen.dart
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/product.dart';
@@ -114,11 +113,10 @@ class ProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
                 child: Image.network(
-                  product.images,  // Updated from imageUrl to images
+                  product.images, 
                   height: 180,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -138,7 +136,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.title,  // Updated from name to title
+                      product.title, 
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
